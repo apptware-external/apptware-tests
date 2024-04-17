@@ -1,7 +1,6 @@
 package com.apptware.interview.serialization;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.SneakyThrows;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +11,7 @@ import org.junit.jupiter.api.Test;
  * <p>
  * The candidate is expected to modify the test case and the corresponding class for with the test
  * case is written so that the appropriate exception is thrown with appropriate messages.
- */
+ **/
 class AdultTest {
 
   @Test
