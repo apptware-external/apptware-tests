@@ -20,7 +20,7 @@ Once you have cloned the repository, navigate to its directory and run the tests
 
 ```bash
 cd apptware-tests
-./gradlew test
+./gradlew :test --info
 ```
 
 This command will execute all the tests in the repository. Since all test cases are expected to fail initially, don't be alarmed by the results!
@@ -38,7 +38,7 @@ Implement fixes for the failing tests based on your analysis. Modify the code as
 After applying your fixes, test the code locally by running the tests again:
 
 ```bash
-./gradlew test
+./gradlew :test --info
 ```
 
 Ensure that all the tests now pass before proceeding.
