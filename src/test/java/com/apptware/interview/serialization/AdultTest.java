@@ -1,6 +1,7 @@
 package com.apptware.interview.serialization;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +23,7 @@ class AdultTest {
     Assertions.assertThatThrownBy(() -> new Adult("Firstname", "Lastname", 17))
         .isInstanceOf(IllegalArgumentException.class)
     // Changes expected ----->
-        .hasMessage("Firstname or Lastname CANNOT be blank.");
+        .hasMessage("Inappropriate Age for an Adult.");
     // <----- Changes expected
 
     String json1 =
@@ -43,8 +44,13 @@ class AdultTest {
             }
             """;
 
-    ObjectMapper objectMapper = new ObjectMapper();
-    Assertions.assertThatThrownBy(
+      ObjectMapper objectMapper = new ObjectMapper();
+      SimpleModule module = new SimpleModule();
+      // Register the custom deserializer with the module
+      module.addDeserializer(Adult.class, new Adult.AdultDeserializer());
+      // Register the module with the ObjectMapper
+      objectMapper.registerModule(module);
+      Assertions.assertThatThrownBy(
             () -> {
               Adult adult = objectMapper.readValue(json1, Adult.class);
               System.out.println(adult);
