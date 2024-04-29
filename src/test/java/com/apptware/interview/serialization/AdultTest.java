@@ -1,11 +1,12 @@
 package com.apptware.interview.serialization;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
- * This test class has a validation for {@link com.apptware.interview.serialization.Adult}. The
+ * This test class has a validation for {@link Adult}. The
  * first test tests the validation using a constructor by creating an illegal entity and expecting
  * an error message for the same. The second test has a same purpose using serialization.
  *
@@ -22,7 +23,7 @@ class AdultTest {
     Assertions.assertThatThrownBy(() -> new Adult("Firstname", "Lastname", 17))
         .isInstanceOf(IllegalArgumentException.class)
     // Changes expected ----->
-        .hasMessage("Firstname or Lastname CANNOT be blank.");
+        .hasMessage("Inappropriate Age for an Adult.");
     // <----- Changes expected
 
     String json1 =
@@ -50,7 +51,7 @@ class AdultTest {
               System.out.println(adult);
             })
     // Changes expected ----->
-        .isInstanceOf(IllegalArgumentException.class)
+         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage("Firstname or Lastname CANNOT be blank.");
     // <----- Changes expected
     Assertions.assertThatThrownBy(
