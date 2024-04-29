@@ -1,9 +1,5 @@
 package com.apptware.interview.serialization;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
 import java.util.Objects;
 
 import com.fasterxml.jackson.core.JsonParser;
@@ -13,12 +9,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.SneakyThrows;
-import lombok.experimental.StandardException;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.boot.jackson.JsonComponent;
-import org.springframework.boot.json.JacksonJsonParser;
 
 @Data
 @NoArgsConstructor
