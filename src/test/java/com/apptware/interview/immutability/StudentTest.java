@@ -7,7 +7,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
- * This test class has a validation for {@link com.apptware.interview.immutability.Student}. The
+ * This test class has a validation for {@link Student}. The
  * test create an instance of the Student class and modifies it and further expects the
  * modifications to be ignored.
  *
