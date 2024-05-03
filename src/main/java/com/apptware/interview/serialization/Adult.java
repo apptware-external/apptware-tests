@@ -1,17 +1,19 @@
 package com.apptware.interview.serialization;
 
 import java.util.Objects;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
 @Data
-@NoArgsConstructor
-public class Adult {
+@JsonDeserialize(using= AdultDeserializer.class)
+public final class Adult {
 
-  private String firstName;
-  private String lastName;
-  private Integer age;
+  private final String firstName;
+  private final String lastName;
+  private final Integer age;
 
   /**
    * This class has a constructor validation that restricts illegal Adult instances which doesn't
