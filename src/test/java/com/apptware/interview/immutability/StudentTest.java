@@ -31,7 +31,7 @@ class StudentTest {
     Date dateOfBirth = student.getDateOfBirth();
     dateOfBirth.setTime(System.currentTimeMillis());
 
-    List<String> courses = student.getCourses();
+    List<String> courses = new ArrayList<>(student.getCourses());
     courses.add("French");
 
     Assertions.assertThat(student.getDateOfBirth().getTime()).isEqualTo(844453800000L);
