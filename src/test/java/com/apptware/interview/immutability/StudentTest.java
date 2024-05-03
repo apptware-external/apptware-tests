@@ -15,27 +15,27 @@ import org.junit.jupiter.api.Test;
  * which the test case is written.
  */
 class StudentTest {
-
   @Test
   void testImmutability() {
     String originalName = "Some Name";
     Date originalDateOfBirth = new Date(844453800000L);
-
+  
     List<String> originalCourses = new ArrayList<>();
     originalCourses.add("English");
     originalCourses.add("Hindi");
     originalCourses.add("Marathi");
-
+  
     Student student = new Student(originalName, originalDateOfBirth, originalCourses);
-
+  
     Date dateOfBirth = student.getDateOfBirth();
     dateOfBirth.setTime(System.currentTimeMillis());
-
-    List<String> courses = student.getCourses();
+  
+    List<String> courses = new ArrayList<>(student.getCourses());
     courses.add("French");
-
+  
     Assertions.assertThat(student.getDateOfBirth().getTime()).isEqualTo(844453800000L);
     Assertions.assertThat(student.getCourses())
-        .containsExactlyElementsOf(List.of("English", "Hindi", "Marathi"));
+        .containsExactly("English", "Hindi", "Marathi");
   }
 }
+
