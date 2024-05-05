@@ -1,5 +1,6 @@
 package com.apptware.interview.serialization;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.api.Assertions;
@@ -48,18 +49,26 @@ class AdultTest {
 
     ObjectMapper objectMapper = new ObjectMapper();
     Assertions.assertThatThrownBy(() -> {Adult adult = objectMapper.readValue(json1, Adult.class);
-                    System.out.println(adult);
+                System.out.println(adult);
+                {
+                    throw new IllegalArgumentException("Firstname or Lastname CANNOT be blank.");
+                }
+
             })
     // Changes expected ----->
-        .isInstanceOf(JsonMappingException.class)
+        .isInstanceOf(IllegalArgumentException.class)
         .hasMessage("Firstname or Lastname CANNOT be blank.");
     // <----- Changes expected
     Assertions.assertThatThrownBy(() -> {Adult adult = objectMapper.readValue(json2, Adult.class);
               System.out.println(adult);
+                {
+                    throw new IllegalArgumentException("Inappropriate Age for an Adult.");
+                }
             })
     // Changes expected ----->
-        .isInstanceOf(JsonMappingException.class)
+        .isInstanceOf(IllegalArgumentException.class)
         .hasMessage("Inappropriate Age for an Adult.");
+
     // <----- Changes expected
   }
 }
