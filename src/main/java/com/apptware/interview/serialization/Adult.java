@@ -1,6 +1,5 @@
 package com.apptware.interview.serialization;
 
-
 import java.util.Objects;
 import lombok.Data;
 import lombok.NoArgsConstructor;
