@@ -1,4 +1,4 @@
-package com.apptware.interview.persistence;
+package com.apptware.interview.jpa;
 
 
 import java.util.UUID;

@@ -1,5 +1,7 @@
-package com.apptware.interview.persistence;
+package com.apptware.interview.jpa;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +12,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Employee {
 
   private UUID id;
