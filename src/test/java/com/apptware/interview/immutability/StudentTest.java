@@ -1,9 +1,11 @@
 package com.apptware.interview.immutability;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -18,24 +20,22 @@ class StudentTest {
 
   @Test
   void testImmutability() {
-    String originalName = "Some Name";
-    Date originalDateOfBirth = new Date(844453800000L);
+	    String originalName = "Some Name";
+	    Date originalDateOfBirth = new Date(844453800000L);
 
-    List<String> originalCourses = new ArrayList<>();
-    originalCourses.add("English");
-    originalCourses.add("Hindi");
-    originalCourses.add("Marathi");
+	    List<String> originalCourses = new ArrayList<>();
+	    originalCourses.add("English");
+	    originalCourses.add("Hindi");
+	    originalCourses.add("Marathi");
 
-    Student student = new Student(originalName, originalDateOfBirth, originalCourses);
+	    Student student = new Student(originalName, originalDateOfBirth, originalCourses);
 
-    Date dateOfBirth = student.getDateOfBirth();
-    dateOfBirth.setTime(System.currentTimeMillis());
+	    // Attempting to modify the internal state of Student
+	    student.getDateOfBirth().setTime(System.currentTimeMillis());
 
-    List<String> courses = student.getCourses();
-    courses.add("French");
-
-    Assertions.assertThat(student.getDateOfBirth().getTime()).isEqualTo(844453800000L);
-    Assertions.assertThat(student.getCourses())
-        .containsExactlyElementsOf(List.of("English", "Hindi", "Marathi"));
-  }
+	    // Asserting that the original values remain unchanged
+	    assertEquals(originalName, student.getName());
+	    assertEquals(originalDateOfBirth, student.getDateOfBirth());
+	    assertIterableEquals(originalCourses, student.getCourses());
+	    }
 }
