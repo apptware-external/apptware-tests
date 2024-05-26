@@ -4,9 +4,11 @@ import java.util.Objects;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Data
 @NoArgsConstructor
+@JsonDeserialize(using = AdultDeserializer.class)
 public class Adult {
 
   private String firstName;

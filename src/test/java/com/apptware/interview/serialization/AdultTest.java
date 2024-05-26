@@ -22,7 +22,7 @@ class AdultTest {
     Assertions.assertThatThrownBy(() -> new Adult("Firstname", "Lastname", 17))
         .isInstanceOf(IllegalArgumentException.class)
     // Changes expected ----->
-        .hasMessage("Firstname or Lastname CANNOT be blank.");
+        .hasMessage("Inappropriate Age for an Adult.");
     // <----- Changes expected
 
     String json1 =
@@ -51,7 +51,7 @@ class AdultTest {
             })
     // Changes expected ----->
         .isInstanceOf(IllegalArgumentException.class)
-        .hasMessage("Firstname or Lastname CANNOT be blank.");
+        .hasMessageContaining("Firstname or Lastname CANNOT be blank.");
     // <----- Changes expected
     Assertions.assertThatThrownBy(
             () -> {
@@ -59,7 +59,7 @@ class AdultTest {
               System.out.println(adult);
             })
     // Changes expected ----->
-        .isInstanceOf(IllegalArgumentException.class)
+    	.isInstanceOf(IllegalArgumentException.class)
         .hasMessage("Inappropriate Age for an Adult.");
     // <----- Changes expected
   }
