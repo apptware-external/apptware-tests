@@ -1,14 +1,20 @@
 package com.apptware.interview.serialization;
 
+import java.io.Serializable;
 import java.util.Objects;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import ch.qos.logback.core.CoreConstants;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 import org.apache.commons.lang3.StringUtils;
 
-@Data
-@NoArgsConstructor
-public class Adult {
 
+@Getter
+@Setter
+@NoArgsConstructor
+public class Adult implements Serializable {
+  private static final long serialVersionUID = 1L;
   private String firstName;
   private String lastName;
   private Integer age;
@@ -18,7 +24,7 @@ public class Adult {
    * work during deserialization. Modify the code in this file so that we can also restrict illegal
    * Adult instances during deserialization.
    */
-  public Adult(String firstName, String lastName, Integer age) {
+/*  public Adult(String firstName, String lastName, Integer age) {
     if (StringUtils.isBlank(firstName) || StringUtils.isBlank(lastName)) {
       throw new IllegalArgumentException("Firstname or Lastname CANNOT be blank.");
     }
@@ -30,5 +36,34 @@ public class Adult {
     this.firstName = firstName;
     this.lastName = lastName;
     this.age = age;
+  }*/
+
+  @JsonCreator
+  public Adult(@JsonProperty("firstName") String firstName, @JsonProperty("lastName") String lastName, @JsonProperty("age") Integer age) throws IllegalArgumentException{
+    // Remove validation logic from constructor and move it to a separate method
+    System.out.println("jkbjsdgfgdsfm");
+    validate(firstName, lastName, age);
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
   }
+
+  // Validation method to check if the provided data is valid for an Adult instance
+  private void validate(String firstName, String lastName, Integer age) {
+    System.out.println("IDHR AA GYA");
+
+    if (StringUtils.isBlank(firstName) || StringUtils.isBlank(lastName)) {
+      System.out.println("IDHR AA GYA+1111");
+      throw new IllegalArgumentException("Firstname or Lastname CANNOT be blank.");
+    }
+
+    if (Objects.isNull(age) || age < 18) {
+      throw new IllegalArgumentException("Inappropriate Age for an Adult.");
+    }
+  }
+
+
+
+
+
 }

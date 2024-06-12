@@ -5,6 +5,8 @@ import lombok.SneakyThrows;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
+
 /**
  * The code tests whether the {@link com.apptware.interview.singleton.Singleton} class strictly
  * enforces the singleton pattern. By using reflection to access the private constructor, it
@@ -29,7 +31,7 @@ class SingletonTest {
       instance2 = (Singleton) constructor.newInstance();
       break;
     }
-
+    System.out.println(instance1.hashCode()+"jkgdkg"+instance2.hashCode());
     Assertions.assertThat(instance1.hashCode()).isEqualTo(instance2.hashCode());
   }
 }

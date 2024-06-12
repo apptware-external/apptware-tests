@@ -4,9 +4,17 @@ spring:
     username: username
     url: jdbc:h2:mem:testdb
     password: password
+    h2:
+      console:
+        enabled: true
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
+
+org:
+  gradle:
+    warning:
+      mode=(all,fail,summary,none):
