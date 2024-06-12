@@ -1,9 +1,10 @@
 package com.apptware.interview.singleton;
 
-import java.lang.reflect.Constructor;
 import lombok.SneakyThrows;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.Constructor;
 
 /**
  * The code tests whether the {@link com.apptware.interview.singleton.Singleton} class strictly

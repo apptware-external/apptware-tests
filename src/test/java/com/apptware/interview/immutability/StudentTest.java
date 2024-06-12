@@ -1,10 +1,11 @@
 package com.apptware.interview.immutability;
 
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 /**
  * This test class has a validation for {@link com.apptware.interview.immutability.Student}. The
