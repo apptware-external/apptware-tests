@@ -10,6 +10,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class Student {
+
 	private String name;
 	private Date dateOfBirth;
 	private List<String> courses;
@@ -27,4 +28,5 @@ public class Student {
 	public List<String> getCourses() {
 		return new ArrayList<>(this.courses);
 	}
+
 }
