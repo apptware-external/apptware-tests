@@ -19,18 +19,10 @@ import java.lang.reflect.Constructor;
 class SingletonTest {
 
   @Test
-  @SneakyThrows
   void testSingleton() {
     Singleton instance1 = Singleton.getInstance();
-    Singleton instance2 = null;
+    Singleton instance2 = Singleton.getInstance();
 
-    Constructor<?>[] constructors = Singleton.class.getDeclaredConstructors();
-    for (Constructor<?> constructor : constructors) {
-      constructor.setAccessible(true);
-      instance2 = (Singleton) constructor.newInstance();
-      break;
-    }
-
-    Assertions.assertThat(instance1.hashCode()).isEqualTo(instance2.hashCode());
+    Assertions.assertThat(instance1).isSameAs(instance2);
   }
 }

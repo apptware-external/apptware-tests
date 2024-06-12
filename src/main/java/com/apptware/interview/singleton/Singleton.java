@@ -2,22 +2,24 @@
 package com.apptware.interview.singleton;
 
 public class Singleton {
-  private static volatile Singleton single_instance = null;
+
+  // Private static variable to hold the single instance of the class
+  private static Singleton instance;
+
+  // Private constructor to prevent direct instantiation
 
   public String s;
-
   private Singleton() {
+
     s = "Hello I am a string part of Singleton class";
   }
 
+  // Public static method to obtain the instance of the class
   public static Singleton getInstance() {
-    if (single_instance == null) {
-      synchronized (Singleton.class) {
-        if (single_instance == null) {
-          single_instance = new Singleton();
-      }
+    // Lazily initialize the instance if it's not already initialized
+    if (instance == null) {
+      instance = new Singleton();
     }
-  }
-    return single_instance;
+    return instance;
   }
 }
