@@ -1,16 +1,20 @@
 /** This class is expected to be a singleton. Please make necessary changes. */
 package com.apptware.interview.singleton;
 
-public enum Singleton {
-  INSTANCE;
+public class Singleton {
+  private static final Singleton instance = new Singleton();
+ 
+  private Singleton() {
 
-  public String s;
-
-  Singleton() {
-      s = "Hello I am a string part of Singleton class";
   }
 
   public static Singleton getInstance() {
-      return INSTANCE;
+      return instance;
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Integer.MAX_VALUE;
   }
 }
