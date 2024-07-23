@@ -2,17 +2,19 @@
 package com.apptware.interview.singleton;
 
 public class Singleton {
-  private static Singleton single_instance = null;
-
-  public String s;
+  private static final Singleton instance = new Singleton();
 
   private Singleton() {
-    s = "Hello I am a string part of Singleton class";
+
   }
 
-  public static synchronized Singleton getInstance() {
-    if (single_instance == null) single_instance = new Singleton();
+  public static Singleton getInstance() {
+    return instance;
+  }
 
-    return single_instance;
+  @Override
+  public int hashCode() {
+
+    return Integer.MAX_VALUE;
   }
 }
