@@ -1,5 +1,6 @@
 package com.apptware.interview.serialization;
 
+import java.io.Serializable;
 import java.util.Objects;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,8 +8,10 @@ import org.apache.commons.lang3.StringUtils;
 
 @Data
 @NoArgsConstructor
-public class Adult {
+public class Adult implements Serializable {
 
+	 private static final long sId = 1L;	
+	
   private String firstName;
   private String lastName;
   private Integer age;
@@ -26,6 +29,10 @@ public class Adult {
     if (Objects.isNull(age) || age < 18) {
       throw new IllegalArgumentException("Inappropriate Age for an Adult.");
     }
+    
+    private Object readResolve() {
+          return this;
+     }
 
     this.firstName = firstName;
     this.lastName = lastName;
