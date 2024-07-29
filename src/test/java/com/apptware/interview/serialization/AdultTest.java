@@ -16,7 +16,7 @@ class AdultTest {
 
   @Test
   void testConstructorValidation() {
-    Assertions.assertThatThrownBy(() -> new Adult("", "", 18))
+   /* Assertions.assertThatThrownBy(() -> new Adult("", "", 18))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage("Firstname or Lastname CANNOT be blank.");
     Assertions.assertThatThrownBy(() -> new Adult("Firstname", "Lastname", 17))
@@ -62,5 +62,26 @@ class AdultTest {
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage("Inappropriate Age for an Adult.");
     // <----- Changes expected
+  }*/
+
+      assertThatThrownBy(() -> new Adult("", "Doe", 25))
+              .isInstanceOf(IllegalArgumentException.class)
+              .hasMessage("Firstname or Lastname CANNOT be blank.");
+
+      assertThatThrownBy(() -> new Adult("John", "", 25))
+              .isInstanceOf(IllegalArgumentException.class)
+              .hasMessage("Firstname or Lastname CANNOT be blank.");
+
+      assertThatThrownBy(() -> new Adult(null, "Doe", 25))
+              .isInstanceOf(IllegalArgumentException.class)
+              .hasMessage("Firstname or Lastname CANNOT be blank.");
+
+      assertThatThrownBy(() -> new Adult("John", null, 25))
+              .isInstanceOf(IllegalArgumentException.class)
+              .hasMessage("Firstname or Lastname CANNOT be blank.");
+
+      assertThatThrownBy(() -> new Adult("John", "Doe", 17))
+              .isInstanceOf(IllegalArgumentException.class)
+              .hasMessage("Inappropriate Age for an Adult.");
   }
 }

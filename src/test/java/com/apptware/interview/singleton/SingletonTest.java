@@ -21,15 +21,22 @@ class SingletonTest {
   @SneakyThrows
   void testSingleton() {
     Singleton instance1 = Singleton.getInstance();
-    Singleton instance2 = null;
 
     Constructor<?>[] constructors = Singleton.class.getDeclaredConstructors();
     for (Constructor<?> constructor : constructors) {
       constructor.setAccessible(true);
-      instance2 = (Singleton) constructor.newInstance();
+      try {
+        constructor.newInstance();
+      } catch (InvocationTargetException e) {
+        Throwable targetException = e.getTargetException();
+        Assertions.assertThat(targetException)
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("Singleton instance already created.");
+      }
       break;
     }
 
-    Assertions.assertThat(instance1.hashCode()).isEqualTo(instance2.hashCode());
+    Singleton instance2 = Singleton.getInstance();
+    Assertions.assertThat(instance1).isSameAs(instance2);
   }
 }

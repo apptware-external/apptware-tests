@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 @Data
 @NoArgsConstructor
+@Json
 public class Adult {
 
   private String firstName;

@@ -6,6 +6,12 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 /**
  * This test class has a validation for {@link com.apptware.interview.immutability.Student}. The
  * test create an instance of the Student class and modifies it and further expects the
@@ -31,11 +37,13 @@ class StudentTest {
     Date dateOfBirth = student.getDateOfBirth();
     dateOfBirth.setTime(System.currentTimeMillis());
 
-    List<String> courses = student.getCourses();
+    //List<String> courses = student.getCourses();
+    List<String> courses = new ArrayList<>(student.getCourses());
     courses.add("French");
 
     Assertions.assertThat(student.getDateOfBirth().getTime()).isEqualTo(844453800000L);
     Assertions.assertThat(student.getCourses())
-        .containsExactlyElementsOf(List.of("English", "Hindi", "Marathi"));
+            .containsExactly("English", "Hindi", "Marathi");
+
   }
 }

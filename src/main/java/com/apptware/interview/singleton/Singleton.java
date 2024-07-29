@@ -2,17 +2,24 @@
 package com.apptware.interview.singleton;
 
 public class Singleton {
-  private static Singleton single_instance = null;
-
-  public String s;
+  private static volatile Singleton instance;
+  private static boolean instanceCreated = false;
 
   private Singleton() {
-    s = "Hello I am a string part of Singleton class";
+    if (instanceCreated) {
+      throw new IllegalStateException("Singleton instance already created.");
+    }
+    instanceCreated = true;
   }
 
-  public static synchronized Singleton getInstance() {
-    if (single_instance == null) single_instance = new Singleton();
-
-    return single_instance;
+  public static Singleton getInstance() {
+    if (instance == null) {
+      synchronized (Singleton.class) {
+        if (instance == null) {
+          instance = new Singleton();
+        }
+      }
+    }
+    return instance;
   }
 }
