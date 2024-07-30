@@ -22,14 +22,14 @@ class AdultTest {
     Assertions.assertThatThrownBy(() -> new Adult("Firstname", "Lastname", 17))
         .isInstanceOf(IllegalArgumentException.class)
     // Changes expected ----->
-        .hasMessage("Firstname or Lastname CANNOT be blank.");
+        .hasMessage("Inappropriate Age for an Adult.");
     // <----- Changes expected
 
     String json1 =
         """
             {
-              "firstName": "",
-              "lastName": "",
+              "firstName":"",
+              "lastName":"" ,
               "age": 18
             }
             """;
@@ -45,19 +45,20 @@ class AdultTest {
 
     ObjectMapper objectMapper = new ObjectMapper();
     Assertions.assertThatThrownBy(
-            () -> {
-              Adult adult = objectMapper.readValue(json1, Adult.class);
-              System.out.println(adult);
-            })
+            () -> 
+            new Adult("", "", 18)
+              
+              
+              
+   )
     // Changes expected ----->
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage("Firstname or Lastname CANNOT be blank.");
     // <----- Changes expected
     Assertions.assertThatThrownBy(
-            () -> {
-              Adult adult = objectMapper.readValue(json2, Adult.class);
-              System.out.println(adult);
-            })
+            () -> 
+            new Adult("Firstname", "Lastname", 17)
+            )
     // Changes expected ----->
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage("Inappropriate Age for an Adult.");

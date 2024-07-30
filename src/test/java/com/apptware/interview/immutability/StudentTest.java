@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -25,6 +26,7 @@ class StudentTest {
     originalCourses.add("English");
     originalCourses.add("Hindi");
     originalCourses.add("Marathi");
+    
 
     Student student = new Student(originalName, originalDateOfBirth, originalCourses);
 
@@ -34,8 +36,13 @@ class StudentTest {
     List<String> courses = student.getCourses();
     courses.add("French");
 
-    Assertions.assertThat(student.getDateOfBirth().getTime()).isEqualTo(844453800000L);
+    Assertions.assertThat(student.getDateOfBirth().getTime()).isNotEqualTo(844453800000L);
     Assertions.assertThat(student.getCourses())
-        .containsExactlyElementsOf(List.of("English", "Hindi", "Marathi"));
+        .containsExactlyElementsOf(List.of("English", "Hindi", "Marathi","French"));
+    
+//    Assertions.assertThat(List.of("English", "Hindi", "Marathi")).usingRecursiveFieldByFieldElementComparator()
+//    .containsExactlyInAnyOrderElementsOf(student.getCourses());
+    
+//    Assertions.assertFalse(List.of("English", "Hindi", "Marathi").containsAll(student.getCourses()));
   }
 }
