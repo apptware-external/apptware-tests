@@ -16,51 +16,51 @@ class AdultTest {
 
   @Test
   void testConstructorValidation() {
+    //test for blank firstName and lastName
     Assertions.assertThatThrownBy(() -> new Adult("", "", 18))
-        .isInstanceOf(IllegalArgumentException.class)
-        .hasMessage("Firstname or Lastname CANNOT be blank.");
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("Firstname or Lastname CANNOT be blank.");
+
+    //test for inappropriate age
     Assertions.assertThatThrownBy(() -> new Adult("Firstname", "Lastname", 17))
-        .isInstanceOf(IllegalArgumentException.class)
+            .isInstanceOf(IllegalArgumentException.class)
+            // Changes expected ----->
+            .hasMessage("Inappropriate Age for an Adult.");
     // Changes expected ----->
-        .hasMessage("Firstname or Lastname CANNOT be blank.");
-    // <----- Changes expected
 
     String json1 =
-        """
-            {
-              "firstName": "",
-              "lastName": "",
-              "age": 18
-            }
-            """;
+            """
+                {
+                  "firstName": "",
+                  "lastName": "",
+                  "age": 18
+                }
+                """;
 
     String json2 =
-        """
-            {
-              "firstName": "Firstname",
-              "lastName": "Lastname",
-              "age": 17
-            }
-            """;
+            """
+                {
+                  "firstName": "Firstname",
+                  "lastName": "Lastname",
+                  "age": 17
+                }
+                """;
 
     ObjectMapper objectMapper = new ObjectMapper();
+
+    //test json for blank firstName and lastName
     Assertions.assertThatThrownBy(
-            () -> {
-              Adult adult = objectMapper.readValue(json1, Adult.class);
-              System.out.println(adult);
-            })
+            () -> objectMapper.readValue(json1, Adult.class))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("Firstname or Lastname CANNOT be blank.");
+
     // Changes expected ----->
-        .isInstanceOf(IllegalArgumentException.class)
-        .hasMessage("Firstname or Lastname CANNOT be blank.");
-    // <----- Changes expected
+    //test json for inappropriate age
     Assertions.assertThatThrownBy(
-            () -> {
-              Adult adult = objectMapper.readValue(json2, Adult.class);
-              System.out.println(adult);
-            })
+            () -> objectMapper.readValue(json2, Adult.class))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("Inappropriate Age for an Adult.");
+
     // Changes expected ----->
-        .isInstanceOf(IllegalArgumentException.class)
-        .hasMessage("Inappropriate Age for an Adult.");
-    // <----- Changes expected
   }
 }
