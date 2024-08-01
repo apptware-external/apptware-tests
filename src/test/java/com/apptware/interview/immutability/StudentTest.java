@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * This test class has a validation for {@link com.apptware.interview.immutability.Student}. The
- * test create an instance of the Student class and modifies it and further expects the
+ * test creates an instance of the Student class and modifies it and further expects the
  * modifications to be ignored.
  *
  * <p>The candidate is expected **NOT** to modify the test case but the corresponding class for
@@ -28,14 +28,14 @@ class StudentTest {
 
     Student student = new Student(originalName, originalDateOfBirth, originalCourses);
 
-    Date dateOfBirth = student.getDateOfBirth();
+    Date dateOfBirth = student.dateOfBirth();
     dateOfBirth.setTime(System.currentTimeMillis());
 
-    List<String> courses = student.getCourses();
+    List<String> courses = student.courses();
     courses.add("French");
 
-    Assertions.assertThat(student.getDateOfBirth().getTime()).isEqualTo(844453800000L);
-    Assertions.assertThat(student.getCourses())
-        .containsExactlyElementsOf(List.of("English", "Hindi", "Marathi"));
+    Assertions.assertThat(student.dateOfBirth().getTime()).isEqualTo(844453800000L);
+    Assertions.assertThat(student.courses())
+            .containsExactlyElementsOf(List.of("English", "Hindi", "Marathi"));
   }
 }
