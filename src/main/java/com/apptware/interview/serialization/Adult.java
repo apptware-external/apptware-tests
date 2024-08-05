@@ -1,13 +1,19 @@
 package com.apptware.interview.serialization;
 
+import java.io.Serializable;
 import java.util.Objects;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
+import com.apptware.interview.deserialization.AdultDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+
 @Data
 @NoArgsConstructor
-public class Adult {
+@JsonDeserialize(using = AdultDeserializer.class)
+public class Adult implements Serializable{
 
   private String firstName;
   private String lastName;
