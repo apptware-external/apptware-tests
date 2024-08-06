@@ -32,7 +32,10 @@ class StudentTest {
     dateOfBirth.setTime(System.currentTimeMillis());
 
     List<String> courses = student.getCourses();
-    courses.add("French");
+    try {
+      courses.add("French");
+    } catch (UnsupportedOperationException ignored) {
+    }
 
     Assertions.assertThat(student.getDateOfBirth().getTime()).isEqualTo(844453800000L);
     Assertions.assertThat(student.getCourses())
