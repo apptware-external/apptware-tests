@@ -1,23 +1,29 @@
 package com.apptware.interview.serialization;
 
-import java.util.Objects;
+import com.apptware.interview.deserialization.AdultDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.micrometer.common.util.StringUtils;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
+import java.util.Objects;
 
 @Data
 @NoArgsConstructor
+//Added Customized AdultDeserializer for custom validations
+@JsonDeserialize(using = AdultDeserializer.class)
 public class Adult {
 
   private String firstName;
   private String lastName;
   private Integer age;
 
+  // Constructor validation
   /**
    * This class has a constructor validation that restricts illegal Adult instances which doesn't
    * work during deserialization. Modify the code in this file so that we can also restrict illegal
    * Adult instances during deserialization.
    */
+  
   public Adult(String firstName, String lastName, Integer age) {
     if (StringUtils.isBlank(firstName) || StringUtils.isBlank(lastName)) {
       throw new IllegalArgumentException("Firstname or Lastname CANNOT be blank.");

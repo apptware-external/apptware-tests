@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import java.util.*;
 
 /**
  * This test class has a validation for {@link com.apptware.interview.immutability.Student}. The
@@ -28,11 +29,14 @@ class StudentTest {
 
     Student student = new Student(originalName, originalDateOfBirth, originalCourses);
 
+    // Test Date immutability
     Date dateOfBirth = student.getDateOfBirth();
     dateOfBirth.setTime(System.currentTimeMillis());
 
+    // Test list immutability
     List<String> courses = student.getCourses();
-    courses.add("French");
+    Assertions.assertThatThrownBy(() -> courses.add("French"))
+            .isInstanceOf(UnsupportedOperationException.class);
 
     Assertions.assertThat(student.getDateOfBirth().getTime()).isEqualTo(844453800000L);
     Assertions.assertThat(student.getCourses())
