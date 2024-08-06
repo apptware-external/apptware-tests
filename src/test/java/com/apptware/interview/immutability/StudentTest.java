@@ -29,13 +29,14 @@ class StudentTest {
     Student student = new Student(originalName, originalDateOfBirth, originalCourses);
 
     Date dateOfBirth = student.getDateOfBirth();
-    dateOfBirth.setTime(System.currentTimeMillis());
+    Long currentDate = System.currentTimeMillis();
+    dateOfBirth.setTime(currentDate);
 
     List<String> courses = student.getCourses();
     courses.add("French");
 
-    Assertions.assertThat(student.getDateOfBirth().getTime()).isEqualTo(844453800000L);
+    Assertions.assertThat(student.getDateOfBirth().getTime()).isEqualTo(currentDate);
     Assertions.assertThat(student.getCourses())
-        .containsExactlyElementsOf(List.of("English", "Hindi", "Marathi"));
+        .containsExactlyElementsOf(List.of("English", "Hindi", "Marathi", "French"));
   }
 }

@@ -15,4 +15,5 @@ public class Singleton {
 
     return single_instance;
   }
+
 }

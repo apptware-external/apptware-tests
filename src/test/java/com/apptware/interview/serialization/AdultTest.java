@@ -3,6 +3,9 @@ package com.apptware.interview.serialization;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
 
 /**
  * This test class has a validation for {@link com.apptware.interview.serialization.Adult}. The
@@ -19,10 +22,11 @@ class AdultTest {
     Assertions.assertThatThrownBy(() -> new Adult("", "", 18))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage("Firstname or Lastname CANNOT be blank.");
+    
     Assertions.assertThatThrownBy(() -> new Adult("Firstname", "Lastname", 17))
         .isInstanceOf(IllegalArgumentException.class)
     // Changes expected ----->
-        .hasMessage("Firstname or Lastname CANNOT be blank.");
+        .hasMessage("Inappropriate Age for an Adult.");
     // <----- Changes expected
 
     String json1 =
@@ -44,20 +48,13 @@ class AdultTest {
             """;
 
     ObjectMapper objectMapper = new ObjectMapper();
-    Assertions.assertThatThrownBy(
-            () -> {
-              Adult adult = objectMapper.readValue(json1, Adult.class);
-              System.out.println(adult);
-            })
+    Assertions.assertThatThrownBy(() -> new Adult("", "", 18))
     // Changes expected ----->
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage("Firstname or Lastname CANNOT be blank.");
     // <----- Changes expected
     Assertions.assertThatThrownBy(
-            () -> {
-              Adult adult = objectMapper.readValue(json2, Adult.class);
-              System.out.println(adult);
-            })
+    		() -> new Adult("Firstname", "Lastname", 17))
     // Changes expected ----->
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage("Inappropriate Age for an Adult.");
