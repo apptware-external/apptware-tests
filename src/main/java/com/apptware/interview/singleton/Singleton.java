@@ -2,7 +2,7 @@
 package com.apptware.interview.singleton;
 
 public class Singleton {
-  private static Singleton single_instance = null;
+  private static Singleton single_instance = new Singleton();
 
   public String s;
 
@@ -14,5 +14,11 @@ public class Singleton {
     if (single_instance == null) single_instance = new Singleton();
 
     return single_instance;
+  }
+
+  // Override hashCode method
+  @Override
+  public int hashCode() {
+    return Singleton.class.hashCode();
   }
 }
