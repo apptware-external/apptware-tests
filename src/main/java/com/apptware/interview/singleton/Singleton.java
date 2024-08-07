@@ -13,6 +13,11 @@ public class Singleton {
   public static synchronized Singleton getInstance() {
     if (single_instance == null) single_instance = new Singleton();
 
-    return single_instance;
+      return single_instance;
   }
+
+    @Override
+    public int hashCode() {
+        return s.hashCode();
+    }
 }
