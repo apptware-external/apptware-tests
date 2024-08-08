@@ -2,14 +2,11 @@
 package com.apptware.interview.singleton;
 
 public class Singleton {
-	private static Singleton single_instance = null;
+	private static volatile Singleton single_instance = null;
 
 	public String s;
 
 	private Singleton() {
-		if (single_instance != null) {
-            return;
-		}
 		s = "Hello I am a string part of Singleton class";
 	}
 
@@ -27,4 +24,15 @@ public class Singleton {
     protected Singleton readResolve() {
         return getInstance();
     }
+    
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+      throw new CloneNotSupportedException("Cannot clone a Singleton");
+    }
+
+    @Override
+    public int hashCode() {
+      return System.identityHashCode(single_instance);
+    }
 }
+
