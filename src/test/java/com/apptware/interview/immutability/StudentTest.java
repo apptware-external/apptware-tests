@@ -25,6 +25,7 @@ class StudentTest {
     originalCourses.add("English");
     originalCourses.add("Hindi");
     originalCourses.add("Marathi");
+    originalCourses.add("French");
 
 
     Student student = new Student(originalName, originalDateOfBirth, originalCourses);
