@@ -12,4 +12,8 @@ public class Student {
   private String name;
   private Date dateOfBirth;
   private List<String> courses;
+
+  public Date getDateOfBirth() {
+    return new Date(dateOfBirth.getTime());
+  }
 }

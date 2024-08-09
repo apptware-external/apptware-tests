@@ -1,10 +1,12 @@
 package com.apptware.interview.spring.beans;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 class OnDemandA extends BaseOnDemand {
 
+  @Autowired
   OnDemandA(String someString) {
     super(someString);
   }

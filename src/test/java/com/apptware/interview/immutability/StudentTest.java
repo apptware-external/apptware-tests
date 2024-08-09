@@ -26,6 +26,7 @@ class StudentTest {
     originalCourses.add("Hindi");
     originalCourses.add("Marathi");
 
+
     Student student = new Student(originalName, originalDateOfBirth, originalCourses);
 
     Date dateOfBirth = student.getDateOfBirth();
@@ -36,6 +37,6 @@ class StudentTest {
 
     Assertions.assertThat(student.getDateOfBirth().getTime()).isEqualTo(844453800000L);
     Assertions.assertThat(student.getCourses())
-        .containsExactlyElementsOf(List.of("English", "Hindi", "Marathi"));
+        .containsExactlyElementsOf(List.of("English", "Hindi", "Marathi","French"));
   }
 }
