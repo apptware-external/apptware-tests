@@ -9,7 +9,6 @@ class OnDemandB extends BaseOnDemand {
     super(someString);
   }
 
-  @Override
   public SomeEnum getSomeEnum() {
     return SomeEnum.SOME_ENUM_B;
   }

@@ -8,8 +8,8 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class Student {
-  private String name;
-  private Date dateOfBirth;
-  private List<String> courses;
+final public class Student {
+  private final String name;
+  private final Date dateOfBirth;
+  private final List<String> courses;
 }
