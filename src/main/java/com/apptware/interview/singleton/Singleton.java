@@ -8,14 +8,19 @@ public class Singleton {
 
   private Singleton() {
     if (single_instance != null) {
-      throw new RuntimeException("Reflection is not allowed. Use getInstance() method to get the singleton instance.");
+      throw new RuntimeException("call getInstance() method to create object");
     }
     s = "Hello I am a string part of Singleton class";
   }
 
   public static synchronized Singleton getInstance() {
-    if (single_instance == null) single_instance = new Singleton();
-
+    if (single_instance == null){
+      synchronized (Singleton.class){
+        if(single_instance == null){
+          single_instance = new Singleton();
+        }
+      }
+    }
     return single_instance;
   }
 }
