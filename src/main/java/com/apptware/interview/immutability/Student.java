@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
-public class Student {
+public final class Student {
   private final String name;
   private final Date dateOfBirth;
   private final List<String> courses;
