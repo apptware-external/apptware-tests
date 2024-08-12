@@ -9,9 +9,9 @@ import lombok.Getter;
 
 @AllArgsConstructor
 public class Student {
-  private String name;
-  private Date dateOfBirth;
-  private List<String> courses;
+  private final String name;
+  private final Date dateOfBirth;
+  private final List<String> courses;
 
   public String getName() {
     return name;
