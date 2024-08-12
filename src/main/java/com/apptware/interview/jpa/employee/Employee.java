@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-class Employee {
+public class Employee {
 
   private UUID id;
   private String name;
