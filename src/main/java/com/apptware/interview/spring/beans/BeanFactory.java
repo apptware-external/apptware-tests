@@ -10,6 +10,16 @@ public class BeanFactory {
   @Autowired private ApplicationContext context;
 
   public OnDemand getOnDemandBean(SomeEnum someEnum, String someString) {
-    return context.getBean(BaseOnDemand.class, someString);
+    switch (someEnum) {
+      case SOME_ENUM_A:
+        OnDemandA beanA = (OnDemandA) context.getBean("OnDemandA");
+        return new OnDemandA(someString);
+      case SOME_ENUM_B:
+        OnDemandB beanB = (OnDemandB) context.getBean("OnDemandB");
+        return new OnDemandB(someString);
+      default:
+        throw new IllegalArgumentException("Unknown SomeEnum value: " + someEnum);
+    }
+
   }
 }

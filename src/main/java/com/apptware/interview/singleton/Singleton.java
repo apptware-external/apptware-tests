@@ -15,4 +15,9 @@ public class Singleton {
 
     return single_instance;
   }
+
+  @Override
+  public int hashCode() {
+    return s.hashCode();
+  }
 }
