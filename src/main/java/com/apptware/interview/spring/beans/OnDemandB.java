@@ -1,11 +1,12 @@
 package com.apptware.interview.spring.beans;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 class OnDemandB extends BaseOnDemand {
 
-  OnDemandB(String someString) {
+  OnDemandB(@Qualifier("someStringB") String someString) {
     super(someString);
   }
 
