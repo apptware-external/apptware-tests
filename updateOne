@@ -1,0 +1,3 @@
+Entity Configuration: Ensure Employee has the necessary JPA annotations such as @Id and @GeneratedValue to define the primary key and its generation strategy.
+Spring Boot Application: Ensure the entry point is properly configured and accessible.
+make class public .
