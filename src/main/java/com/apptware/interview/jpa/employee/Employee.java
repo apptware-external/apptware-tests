@@ -1,5 +1,6 @@
 package com.apptware.interview.jpa.employee;
 
+import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
 import java.util.UUID;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import lombok.Setter;
 @Entity
 class Employee {
 
-  private UUID id;
-  private String name;
+	@Id
+	private UUID id;
+	private String name;
 }
