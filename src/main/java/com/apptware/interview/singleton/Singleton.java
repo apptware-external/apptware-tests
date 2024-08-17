@@ -10,6 +10,7 @@ public class Singleton implements Serializable {
 	public String s;
 
 	private Singleton() {
+		
 		   s = "Hello I am a string part of Singleton class";
 	}
 
@@ -51,7 +52,8 @@ public class Singleton implements Serializable {
 
 }
 
-//  Here is the other approach
+//  *************************  I have 3  approach
+// *****************First
 //package com.apptware.interview.singleton;
 //
 //import java.io.Serializable;
@@ -112,3 +114,42 @@ public class Singleton implements Serializable {
 //        return randomIntInRange;
 //    }
 //}
+
+
+
+// **************** second
+
+//package com.apptware.interview.singleton;
+//
+//import java.io.Serializable;
+//
+//public class Singleton implements Serializable {
+//	private static final long serialVersionUID = 1L;
+//
+//	private static Singleton single_instance = null;
+//
+//	public String s;
+//
+//	private Singleton() {
+//		if(single_instance!=null) {
+//			throw new RuntimeException("Object alredy created");
+//		}
+//		   s = "Hello I am a string part of Singleton class";
+//	}
+//
+//	public static Singleton getInstance() {
+//		if (single_instance == null) {
+//			synchronized (Singleton.class) {
+//				if (single_instance == null) {
+//					single_instance = new Singleton();
+//				}
+//			}
+//		}
+//		return single_instance;
+//	}
+//
+//}
+
+
+//***************Third
+//  i can use Enum 
