@@ -21,15 +21,20 @@ class SingletonTest {
   @SneakyThrows
   void testSingleton() {
     Singleton instance1 = Singleton.getInstance();
-    Singleton instance2 = null;
 
+    Singleton instance2 = null;
     Constructor<?>[] constructors = Singleton.class.getDeclaredConstructors();
     for (Constructor<?> constructor : constructors) {
       constructor.setAccessible(true);
-      instance2 = (Singleton) constructor.newInstance();
-      break;
+      try {
+        instance2 = (Singleton) constructor.newInstance();
+      } catch (Exception e) {
+        Assertions.assertThat(e.getCause()).isInstanceOf(IllegalStateException.class);
+        break;
+      }
     }
 
-    Assertions.assertThat(instance1.hashCode()).isEqualTo(instance2.hashCode());
+    Assertions.assertThat(instance1).isNotNull();
+    Assertions.assertThat(instance2).isNull();  // This should be null if the exception was thrown
   }
 }

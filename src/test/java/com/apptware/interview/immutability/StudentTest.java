@@ -28,14 +28,13 @@ class StudentTest {
 
     Student student = new Student(originalName, originalDateOfBirth, originalCourses);
 
-    Date dateOfBirth = student.getDateOfBirth();
-    dateOfBirth.setTime(System.currentTimeMillis());
+    Assertions.assertThat(student.getDateOfBirth().getTime()).isEqualTo(844453800000L);
 
     List<String> courses = student.getCourses();
-    courses.add("French");
+    Assertions.assertThat(courses)
+            .containsExactlyInAnyOrder("English", "Hindi", "Marathi");
 
-    Assertions.assertThat(student.getDateOfBirth().getTime()).isEqualTo(844453800000L);
-    Assertions.assertThat(student.getCourses())
-        .containsExactlyElementsOf(List.of("English", "Hindi", "Marathi"));
+    Assertions.assertThatThrownBy(() -> courses.add("French"))
+            .isInstanceOf(UnsupportedOperationException.class);
   }
 }

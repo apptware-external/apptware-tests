@@ -7,12 +7,16 @@ public class Singleton {
   public String s;
 
   private Singleton() {
+    if (single_instance != null) {
+      throw new IllegalStateException("Instance already exists!");
+    }
     s = "Hello I am a string part of Singleton class";
   }
 
   public static synchronized Singleton getInstance() {
-    if (single_instance == null) single_instance = new Singleton();
-
+    if (single_instance == null) {
+      single_instance = new Singleton();
+    }
     return single_instance;
   }
 }

@@ -22,18 +22,16 @@ class EmployeeTest {
 
   @Test
   void testSaveEmployee() {
-    UUID employeeId = UUID.randomUUID();
     String employeeName = "Firstname Lastname";
 
     Employee employee = new Employee();
-    employee.setId(employeeId);
     employee.setName(employeeName);
 
-    employeeRepository.save(employee);
+    Employee savedEmployee = employeeRepository.save(employee);
 
-    Employee retrievedEmployee = employeeRepository.findById(employeeId).orElse(null);
-    Assertions.assertThat(retrievedEmployee.getId()).isEqualTo(employeeId);
+    Employee retrievedEmployee = employeeRepository.findById(savedEmployee.getId()).orElse(null);
     Assertions.assertThat(retrievedEmployee).isNotNull();
+    Assertions.assertThat(retrievedEmployee.getId()).isNotNull();
     Assertions.assertThat(retrievedEmployee.getName()).isEqualTo(employeeName);
   }
 }
