@@ -9,7 +9,13 @@ public class BeanFactory {
 
   @Autowired private ApplicationContext context;
 
+
   public OnDemand getOnDemandBean(SomeEnum someEnum, String someString) {
-    return context.getBean(BaseOnDemand.class, someString);
+    if(someEnum == SomeEnum.SOME_ENUM_A){
+      return context.getBean(OnDemandA.class, someString);
+    }else{
+      return context.getBean(OnDemandB.class, someString);
+    }
+
   }
 }
