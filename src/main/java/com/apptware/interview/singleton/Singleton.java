@@ -7,7 +7,9 @@ public class Singleton {
   public String s;
 
   private Singleton() {
-    s = "Hello I am a string part of Singleton class";
+    if (single_instance == null) {
+      s = "Hello I am a string part of Singleton class";
+    }
   }
 
   public static synchronized Singleton getInstance() {
@@ -15,4 +17,14 @@ public class Singleton {
 
     return single_instance;
   }
+@Override
+  protected Object clone() throws CloneNotSupportedException {
+    return getInstance();
+  }
+
+  @Override
+  public int hashCode() {
+    return System.identityHashCode(single_instance);
+  }
+
 }
