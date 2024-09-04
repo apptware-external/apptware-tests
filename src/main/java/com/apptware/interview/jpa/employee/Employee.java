@@ -1,7 +1,10 @@
 package com.apptware.interview.jpa.employee;
 
 import jakarta.persistence.Entity;
+
 import java.util.UUID;
+
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +12,11 @@ import lombok.Setter;
 @Setter
 @Entity
 class Employee {
-
-  private UUID id;
-  private String name;
+  /**
+   * Annotating the id field allows JPA to handle entity operations.
+   * test case issue resolved.
+   */
+    @Id
+    private UUID id;
+    private String name;
 }
