@@ -5,16 +5,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public final class Student {
     private final String name;
     private final Date dateOfBirth;
     private final List<String> courses;
-
-    public Student(String name, Date dateOfBirth, List<String> courses) {
-        this.name = name;
-        this.dateOfBirth = new Date(dateOfBirth.getTime());
-        this.courses = courses;
-    }
 
     public String getName() {
         return name;
