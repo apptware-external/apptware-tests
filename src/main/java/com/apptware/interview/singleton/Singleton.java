@@ -7,6 +7,9 @@ public class Singleton {
   public String s;
 
   private Singleton() {
+    if (single_instance != null) {
+      throw new RuntimeException("An instance already exists.");
+    }
     s = "Hello I am a string part of Singleton class";
   }
 
