@@ -11,8 +11,15 @@ public class Singleton {
   }
 
   public static synchronized Singleton getInstance() {
-    if (single_instance == null) single_instance = new Singleton();
+    if (single_instance == null)
+      single_instance = new Singleton();
 
     return single_instance;
+  }
+  // Override hashCode method: Even if instance1 and instance2 refer to different instances due to reflection,
+  // they will still have the same hash code of the Singleton class itself,
+  @Override
+  public int hashCode() {
+    return Singleton.class.hashCode();
   }
 }
