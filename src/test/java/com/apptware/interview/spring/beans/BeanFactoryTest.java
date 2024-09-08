@@ -10,7 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 // you're supposed to solve.
 class BeanFactoryTest {
 
-  @Autowired private BeanFactory beanFactory;
+  @Autowired 
+  private BeanFactory beanFactory;
 
   @Test
   void getOnDemandBean() {
