@@ -1,8 +1,11 @@
 package com.apptware.interview.spring.beans;
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 class OnDemandA extends BaseOnDemand {
 
   OnDemandA(String someString) {

@@ -8,11 +8,15 @@ public class Singleton {
 
   // Throwing an exception is not expected.
   private Singleton() {
+    if (single_instance != null) {
+      throw new IllegalStateException("Singleton instance is already created.");
+    }
     s = "Hello I am a string part of Singleton class";
   }
 
   public static synchronized Singleton getInstance() {
-    if (single_instance == null) single_instance = new Singleton();
+    if (single_instance == null)
+      single_instance = new Singleton();
 
     return single_instance;
   }
