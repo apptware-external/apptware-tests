@@ -1,9 +1,12 @@
 package com.apptware.interview.singleton;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 import lombok.SneakyThrows;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * The code tests whether the {@link com.apptware.interview.singleton.Singleton} class strictly
@@ -15,11 +18,13 @@ import org.junit.jupiter.api.Test;
  * <p>The candidate is expected **NOT** to modify the test case but the corresponding class for
  * which the test case is written.
  */
+//@SpringBootTest
+
 class SingletonTest {
 
   @Test
   @SneakyThrows
-  void testSingleton() {
+  void testSingleton() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Singleton instance1 = Singleton.getInstance();
     Singleton instance2 = null;
 

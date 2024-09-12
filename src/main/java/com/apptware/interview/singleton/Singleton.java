@@ -1,19 +1,38 @@
-/** This class is expected to be a singleton. Please make necessary changes. */
+
 package com.apptware.interview.singleton;
 
-public class Singleton {
-  private static Singleton single_instance = null;
+import java.io.Serializable;
 
-  public String s;
+/**
+ * Singleton class ensures only one instance is created.
+ */
+public class Singleton implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-  // Throwing an exception is not expected.
-  private Singleton() {
-    s = "Hello I am a string part of Singleton class";
-  }
+    private static Singleton SINGLE_INSTANCE;
 
-  public static synchronized Singleton getInstance() {
-    if (single_instance == null) single_instance = new Singleton();
+    private String s;
 
-    return single_instance;
-  }
+    // Static block to initialize the singleton instance
+    static {
+        SINGLE_INSTANCE = new Singleton();
+    }
+
+    // Private constructor to prevent instantiation
+    private Singleton Singleton() {
+        if (SINGLE_INSTANCE != null) {
+            
+           System.out.println("Exiting one");
+        }
+       return  SINGLE_INSTANCE;
+        
+        //s = "Hello I am a string part of Singleton class";
+    }
+
+    
+    public static Singleton getInstance() {
+        return SINGLE_INSTANCE;
+    }
+
+    
 }

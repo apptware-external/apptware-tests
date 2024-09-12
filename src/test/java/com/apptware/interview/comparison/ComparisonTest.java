@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * This test class has a validation for {@link com.apptware.interview.comparison.SomeClass}. Creates
@@ -20,6 +21,7 @@ import org.junit.jupiter.api.Test;
  * <p>The candidate is expected **NOT** to modify the test case but the corresponding class for
  * which the test case is written.
  */
+@SpringBootTest
 class ComparisonTest {
 
   public static final Random RANDOM = new Random();

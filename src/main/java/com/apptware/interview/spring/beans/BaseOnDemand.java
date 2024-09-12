@@ -1,8 +1,10 @@
 package com.apptware.interview.spring.beans;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 // Do not change this class
+@Component
 abstract class BaseOnDemand implements OnDemand {
 
   @Autowired private SomeComponent someComponent;
@@ -15,6 +17,14 @@ abstract class BaseOnDemand implements OnDemand {
 
   @Override
   public String getSomeString() {
-    return someComponent.processSomeString(someString);
+    return getSomeComponent().processSomeString(someString);
   }
+
+public SomeComponent getSomeComponent() {
+	return someComponent;
+}
+
+public void setSomeComponent(SomeComponent someComponent) {
+	this.someComponent = someComponent;
+}
 }
