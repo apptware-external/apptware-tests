@@ -2,18 +2,29 @@
 package com.apptware.interview.singleton;
 
 public class Singleton {
-  private static Singleton single_instance = null;
+  private static volatile Singleton single_instance = null;
 
   public String s;
 
   // Throwing an exception is not expected.
   private Singleton() {
-    s = "Hello I am a string part of Singleton class";
+    if (single_instance != null) {
+      single_instance = this;
+  } else {
+      s = "Hello, I am a string part of Singleton class";
+  }
   }
 
-  public static synchronized Singleton getInstance() {
-    if (single_instance == null) single_instance = new Singleton();
+  public static  Singleton getInstance() {
+    if (single_instance == null) {
+      synchronized (Singleton.class) {
+          if (single_instance == null) {
+              single_instance = new Singleton();
+          }
+      }
+  }
 
     return single_instance;
   }
+  
 }
