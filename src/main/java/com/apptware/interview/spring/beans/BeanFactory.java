@@ -7,9 +7,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class BeanFactory {
 
-  @Autowired private ApplicationContext context;
+	@Autowired
+	private ApplicationContext context;
 
   public OnDemand getOnDemandBean(SomeEnum someEnum, String someString) {
-    return context.getBean(BaseOnDemand.class, someString);
+		switch (someEnum) {
+		case SOME_ENUM_A:
+			return context.getBean(OnDemandA.class, someString);
+		case SOME_ENUM_B:
+			return context.getBean(OnDemandB.class, someString);
+		default:
+			throw new IllegalArgumentException("Incorrecrt Enum type: " + someEnum);
+		}
   }
 }
