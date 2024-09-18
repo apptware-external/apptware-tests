@@ -29,7 +29,7 @@ class SingletonTest {
       instance2 = (Singleton) constructor.newInstance();
       break;
     }
-
+    System.out.println(instance1.hashCode()+" ----"+instance2.hashCode());
     Assertions.assertThat(instance1.hashCode()).isEqualTo(instance2.hashCode());
   }
 }

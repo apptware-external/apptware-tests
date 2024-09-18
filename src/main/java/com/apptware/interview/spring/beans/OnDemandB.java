@@ -1,11 +1,13 @@
 package com.apptware.interview.spring.beans;
-
 import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Lazy;
+
 
 @Component
-class OnDemandB extends BaseOnDemand {
+@Lazy
+public class OnDemandB extends BaseOnDemand {
 
-  OnDemandB(String someString) {
+  public OnDemandB(String someString) {
     super(someString);
   }
 
