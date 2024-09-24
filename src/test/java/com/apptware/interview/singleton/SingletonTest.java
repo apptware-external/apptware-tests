@@ -1,6 +1,8 @@
 package com.apptware.interview.singleton;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 import lombok.SneakyThrows;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -19,7 +21,7 @@ class SingletonTest {
 
   @Test
   @SneakyThrows
-  void testSingleton() {
+  void testSingleton() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Singleton instance1 = Singleton.getInstance();
     Singleton instance2 = null;
 

@@ -34,6 +34,7 @@ class ComparisonTest {
             .sorted(Comparator.comparing(SomeClass::getLastInvoked).reversed())
             .distinct()
             .toList();
+
     Assertions.assertThat(latestDistinctItems).hasSize(10);
   }
 

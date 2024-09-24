@@ -8,6 +8,9 @@ public class Singleton {
 
   // Throwing an exception is not expected.
   private Singleton() {
+//    if (single_instance != null) {
+//        throw new IllegalStateException("Already initialized");
+//    }
     s = "Hello I am a string part of Singleton class";
   }
 
@@ -16,4 +19,11 @@ public class Singleton {
 
     return single_instance;
   }
+
+@Override
+public int hashCode() {
+	return Singleton.class.hashCode();
+}
+  
+  
 }
