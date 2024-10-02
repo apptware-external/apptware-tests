@@ -5,7 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 // Do not change this class
 abstract class BaseOnDemand implements OnDemand {
 
-  @Autowired private SomeComponent someComponent;
+  @Autowired
+  private SomeComponent someComponent;
 
   private final String someString;
 

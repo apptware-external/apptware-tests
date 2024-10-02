@@ -4,8 +4,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 class OnDemandA extends BaseOnDemand {
+	
 
-  OnDemandA(String someString) {
+ OnDemandA(String someString) {
     super(someString);
   }
 
@@ -13,4 +14,8 @@ class OnDemandA extends BaseOnDemand {
   public SomeEnum getSomeEnum() {
     return SomeEnum.SOME_ENUM_A;
   }
+  
+  
+  
+  
 }
