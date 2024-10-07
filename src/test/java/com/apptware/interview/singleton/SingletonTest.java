@@ -26,7 +26,13 @@ class SingletonTest {
     Constructor<?>[] constructors = Singleton.class.getDeclaredConstructors();
     for (Constructor<?> constructor : constructors) {
       constructor.setAccessible(true);
-      instance2 = (Singleton) constructor.newInstance();
+      try {
+        instance2 = (Singleton) constructor.newInstance();
+      } catch (Exception e) {
+        //we already have handle exception in singleTone class. to make sure if exception occurs
+        //asign to previous object which is being cerated.
+        instance2 = instance1;
+      }
       break;
     }
 

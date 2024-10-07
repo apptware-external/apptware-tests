@@ -7,6 +7,10 @@ public class Singleton {
   public String s;
 
   private Singleton() {
+    if (single_instance != null) {
+      throw new RuntimeException("we can only create a single INSTANCE.");
+    }
+
     s = "Hello I am a string part of Singleton class";
   }
 
