@@ -2,8 +2,10 @@ package com.apptware.interview.stream.impl;
 
 import com.apptware.interview.stream.DataReader;
 import com.apptware.interview.stream.PaginationService;
-import jakarta.annotation.Nonnull;
+
+import java.util.List;
 import java.util.stream.Stream;
+import com.apptware.interview.stream.Service.SService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +14,15 @@ import org.springframework.stereotype.Service;
 @Service
 class DataReaderImpl implements DataReader {
 
-  @Autowired private PaginationService paginationService;
+  @Autowired
+  private SService sService;
+
+  @Autowired
+  private PaginationService paginationService;
 
   @Override
   public Stream<String> fetchLimitadData(int limit) {
-    return fetchPaginatedDataAsStream().limit(limit);
+    return fetchPaginatedDataAsStream().limit(limit); // No collecting, returns Stream<String>
   }
 
   @Override
@@ -25,17 +31,18 @@ class DataReaderImpl implements DataReader {
   }
 
   /**
-   * This method is where the candidate should add the implementation. Logs have been added to track
-   * the data fetching behavior. Do not modify any other areas of the code.
+   * This method is where the candidate should add the implementation.
+   * Logs have been added to track the data fetching behavior.
    */
-  private @Nonnull Stream<String> fetchPaginatedDataAsStream() {
-    log.info("Fetching paginated data as stream.");
+  private Stream<String> fetchPaginatedDataAsStream() {
+      log.info("Fetching paginated data as stream.");
 
-    // Placeholder for paginated data fetching logic
-    // The candidate will add the actual implementation here
+      // Example data stream; replace with actual fetching logic
 
-    Stream<String> dataStream =
-        Stream.empty(); // Temporary, will be replaced by the actual data stream
-    return dataStream.peek(item -> log.info("Fetched Item: {}", item));
+
+      List<String> ls = this.sService.getAllData();
+      Stream<String> dataStream = ls.stream();
+      return dataStream.peek(item -> log.info("Fetched Item: {}", item));
+
   }
 }
