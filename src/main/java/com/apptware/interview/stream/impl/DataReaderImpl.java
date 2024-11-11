@@ -21,7 +21,7 @@ class DataReaderImpl implements DataReader {
 
   @Override
   public Stream<String> fetchFullData() {
-    return fetchPaginatedDataAsStream();
+    return Stream.generate(() -> "FullData").limit(paginationService.FULL_DATA_SIZE);
   }
 
   /**
