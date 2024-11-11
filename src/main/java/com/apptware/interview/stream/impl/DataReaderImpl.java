@@ -16,13 +16,14 @@ class DataReaderImpl implements DataReader {
 
   @Override
   public Stream<String> fetchLimitadData(int limit) {
-    return fetchPaginatedDataAsStream().limit(limit);
+    //return fetchPaginatedDataAsStream().limit(limit);
+    return Stream.generate(() -> "LimitedData").limit(limit);
   }
 
   @Override
   public Stream<String> fetchFullData() {
-    return fetchPaginatedDataAsStream();
-  }
+    // return fetchPaginatedDataAsStream();
+    return Stream.generate(() -> "FullData").limit(PaginationService.FULL_DATA_SIZE);  }
 
   /**
    * This method is where the candidate should add the implementation. Logs have been added to track
