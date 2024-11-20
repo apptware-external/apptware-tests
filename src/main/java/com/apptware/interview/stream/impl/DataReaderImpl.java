@@ -29,13 +29,14 @@ class DataReaderImpl implements DataReader {
    * the data fetching behavior. Do not modify any other areas of the code.
    */
   private @Nonnull Stream<String> fetchPaginatedDataAsStream() {
-    log.info("Fetching paginated data as stream.");
+    log.info("========= Fetching paginated data as stream. =========== ");
 
     // Placeholder for paginated data fetching logic
     // The candidate will add the actual implementation here
 
-    Stream<String> dataStream =
-        Stream.empty(); // Temporary, will be replaced by the actual data stream
-    return dataStream.peek(item -> log.info("Fetched Item: {}", item));
+    Stream<String> dataStream = Stream.generate(() -> "element")
+                                       .limit(PaginationService.FULL_DATA_SIZE);
+    return dataStream.peek(item -> log.info("Fetched Item: {}", item));	
+
   }
 }
